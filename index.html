@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZeppOS Editor Statistics</title>
+  <meta name="description" content="Usage statistics for the ZeppOS watch face editor">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d7cff'/%3E%3Cpath d='M8 22V14M14 22V9M20 22v-6M26 22V12' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script>
+    // Apply saved theme before first paint to avoid a flash. Dark is the default.
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 19V12M10 19V6M15 19v-5M20 19V9"/></svg>
+        </div>
+        <div>
+          <div class="brand-name" id="app-name">ZeppOS Editor</div>
+          <div class="brand-sub" data-i18n="subtitle"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="lang-switch" role="group" data-i18n-aria="language">
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="ru">RU</button>
+          <button type="button" data-lang="uk">UA</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle">
+          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 data-i18n="title"></h1>
+      <div class="meta">
+        <span id="updated"></span>
+        <button type="button" class="link-btn" id="refresh">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>
+          <span data-i18n="refresh"></span>
+        </button>
+      </div>
+    </section>
+
+    <div id="error" class="error" hidden>
+      <strong data-i18n="errorTitle"></strong>
+      <span id="error-text"></span>
+      <button type="button" class="btn" id="retry" data-i18n="retry"></button>
+    </div>
+
+    <section class="kpis" id="kpis">
+      <article class="card kpi kpi-main">
+        <div class="kpi-label" data-i18n="totalDevices"></div>
+        <div class="kpi-value" data-kpi="total_devices">—</div>
+      </article>
+      <article class="card kpi">
+        <div class="kpi-label" data-i18n="new7"></div>
+        <div class="kpi-value" data-kpi="new_devices_7_days">—</div>
+        <div class="kpi-note" data-kpi-share="new_devices_7_days"></div>
+      </article>
+      <article class="card kpi">
+        <div class="kpi-label" data-i18n="new30"></div>
+        <div class="kpi-value" data-kpi="new_devices_30_days">—</div>
+        <div class="kpi-note" data-kpi-share="new_devices_30_days"></div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card panel" data-panel="windows">
+        <header class="panel-head">
+          <h2 data-i18n="windows"></h2>
+          <div class="segmented" role="group">
+            <button type="button" data-mode="full" data-i18n="editions"></button>
+            <button type="button" data-mode="grouped" data-i18n="versions"></button>
+          </div>
+        </header>
+        <div class="bars"></div>
+      </article>
+
+      <article class="card panel" data-panel="winLang">
+        <header class="panel-head">
+          <h2 data-i18n="winLanguages"></h2>
+          <div class="segmented" role="group">
+            <button type="button" data-mode="full" data-i18n="full"></button>
+            <button type="button" data-mode="grouped" data-i18n="grouped"></button>
+          </div>
+        </header>
+        <div class="bars"></div>
+      </article>
+
+      <article class="card panel" data-panel="appLang">
+        <header class="panel-head">
+          <h2 data-i18n="appLanguages"></h2>
+        </header>
+        <div class="bars"></div>
+      </article>
+
+      <article class="card panel" data-panel="watch">
+        <header class="panel-head">
+          <h2 data-i18n="watchModels"></h2>
+        </header>
+        <div class="bars"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <span data-i18n="footer"></span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+{
+    "generated_at": "2026-10-26T10:54:36.526Z",
+    "total_devices": 638,
+    "new_devices_7_days": 86,
+    "new_devices_30_days": 432,
+    "windows_versions": [
+        {
+            "name": "Windows 11 Enterprise",
+            "count": 306
+        },
+        {
+            "name": "Windows 11 Home",
+            "count": 138
+        },
+        {
+            "name": "Windows 10 Enterprise",
+            "count": 118
+        },
+        {
+            "name": "Windows 10 Home",
+            "count": 31
+        },
+        {
+            "name": "Windows 10 Enterprise LTSC",
+            "count": 18
+        },
+        {
+            "name": "Windows 10 Pro",
+            "count": 9
+        },
+        {
+            "name": "Windows 11 Enterprise LTSC",
+            "count": 8
+        },
+        {
+            "name": "Windows 7",
+            "count": 3
+        },
+        {
+            "name": "Windows 10",
+            "count": 2
+        },
+        {
+            "name": "Windows 11",
+            "count": 1
+        },
+        {
+            "name": "Windows 11 Enterprise N",
+            "count": 1
+        },
+        {
+            "name": "Windows 11 Pro",
+            "count": 1
+        },
+        {
+            "name": "Windows 8.1",
+            "count": 1
+        },
+        {
+            "name": "Windows 8.1 Pro",
+            "count": 1
+        }
+    ],
+    "windows_by_number": [
+        {
+            "name": "11",
+            "count": 455
+        },
+        {
+            "name": "10",
+            "count": 178
+        },
+        {
+            "name": "7",
+            "count": 3
+        },
+        {
+            "name": "8.1",
+            "count": 2
+        }
+    ],
+    "windows_languages": [
+        {
+            "name": "Russian",
+            "count": 157
+        },
+        {
+            "name": "English (United States)",
+            "count": 143
+        },
+        {
+            "name": "Spanish (Spain)",
+            "count": 52
+        },
+        {
+            "name": "Italian (Italy)",
+            "count": 46
+        },
+        {
+            "name": "German (Germany)",
+            "count": 31
+        },
+        {
+            "name": "English (United Kingdom)",
+            "count": 28
+        },
+        {
+            "name": "Portuguese (Brazil)",
+            "count": 28
+        },
+        {
+            "name": "Polish (Poland)",
+            "count": 27
+        },
+        {
+            "name": "Korean (South Korea)",
+            "count": 24
+        },
+        {
+            "name": "Czech (Czechia)",
+            "count": 13
+        },
+        {
+            "name": "French (France)",
+            "count": 13
+        },
+        {
+            "name": "Japanese",
+            "count": 12
+        },
+        {
+            "name": "Hungarian (Hungary)",
+            "count": 10
+        },
+        {
+            "name": "Ukrainian (Ukraine)",
+            "count": 10
+        },
+        {
+            "name": "Chinese (China)",
+            "count": 9
+        },
+        {
+            "name": "Chinese (Hong Kong)",
+            "count": 9
+        },
+        {
+            "name": "Spanish (Mexico)",
+            "count": 7
+        },
+        {
+            "name": "Portuguese (Portugal)",
+            "count": 6
+        },
+        {
+            "name": "Turkish (Türkiye)",
+            "count": 5
+        },
+        {
+            "name": "Bulgarian",
+            "count": 2
+        },
+        {
+            "name": "Greek (Greece)",
+            "count": 2
+        },
+        {
+            "name": "Croatian",
+            "count": 1
+        },
+        {
+            "name": "English (Australia)",
+            "count": 1
+        },
+        {
+            "name": "French (Canada)",
+            "count": 1
+        },
+        {
+            "name": "Slovak (Slovakia)",
+            "count": 1
+        }
+    ],
+    "windows_languages_grouped": [
+        {
+            "name": "English",
+            "count": 172
+        },
+        {
+            "name": "Russian",
+            "count": 157
+        },
+        {
+            "name": "Spanish",
+            "count": 59
+        },
+        {
+            "name": "Italian",
+            "count": 46
+        },
+        {
+            "name": "Portuguese",
+            "count": 34
+        },
+        {
+            "name": "German",
+            "count": 31
+        },
+        {
+            "name": "Polish",
+            "count": 27
+        },
+        {
+            "name": "Korean",
+            "count": 24
+        },
+        {
+            "name": "Chinese",
+            "count": 18
+        },
+        {
+            "name": "French",
+            "count": 14
+        },
+        {
+            "name": "Czech",
+            "count": 13
+        },
+        {
+            "name": "Japanese",
+            "count": 12
+        },
+        {
+            "name": "Hungarian",
+            "count": 10
+        },
+        {
+            "name": "Ukrainian",
+            "count": 10
+        },
+        {
+            "name": "Turkish",
+            "count": 5
+        },
+        {
+            "name": "Bulgarian",
+            "count": 2
+        },
+        {
+            "name": "Greek",
+            "count": 2
+        },
+        {
+            "name": "Croatian",
+            "count": 1
+        },
+        {
+            "name": "Slovak",
+            "count": 1
+        }
+    ],
+    "app_languages": [
+        {
+            "name": "English",
+            "count": 263
+        },
+        {
+            "name": "Русский",
+            "count": 166
+        },
+        {
+            "name": "Español",
+            "count": 67
+        },
+        {
+            "name": "Italiano",
+            "count": 47
+        },
+        {
+            "name": "Deutsch",
+            "count": 34
+        },
+        {
+            "name": "Chinese/简体中文",
+            "count": 17
+        },
+        {
+            "name": "Čeština",
+            "count": 15
+        },
+        {
+            "name": "French",
+            "count": 15
+        },
+        {
+            "name": "Українська",
+            "count": 13
+        },
+        {
+            "name": "Português (Brasil)",
+            "count": 1
+        }
+    ],
+    "watch_models": [
+        {
+            "name": "Amazfit",
+            "count": 636
+        },
+        {
+            "name": "Active 2",
+            "count": 1
+        },
+        {
+            "name": "T-Rex 3",
+            "count": 1
+        }
+    ]
+}
