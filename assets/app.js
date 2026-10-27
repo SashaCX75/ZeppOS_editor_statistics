@@ -16,8 +16,38 @@
       grouped: (d) => d.windows_languages_grouped,
     },
     appLang: { full: (d) => d.app_languages },
+    // "18.1.0.0" and "18.1.2.0" are both counted as "18.1"; newest version first.
+    appVer: {
+      full: (d) => d.app_versions && groupByMinorVersion(d.app_versions),
+      optional: true,
+      sort: (a, b) => compareVersions(b.name, a.name),
+    },
     watch: { full: (d) => d.watch_models },
   };
+
+  function groupByMinorVersion(rows) {
+    const totals = new Map();
+    for (const r of rows) {
+      const key = String(r.name).split(".").slice(0, 2).join(".");
+      totals.set(key, (totals.get(key) || 0) + r.count);
+    }
+    return [...totals].map(([name, count]) => ({ name, count }));
+  }
+
+  // Names that are not versions ("Unknown") compare lowest, so they sort last.
+  function compareVersions(a, b) {
+    const isVersion = (s) => /^\d+(\.\d+)*$/.test(s);
+    if (!isVersion(a) || !isVersion(b)) {
+      return isVersion(a) - isVersion(b) || a.localeCompare(b);
+    }
+    const pa = a.split(".").map(Number);
+    const pb = b.split(".").map(Number);
+    for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+      const diff = (pa[i] || 0) - (pb[i] || 0);
+      if (diff) return diff;
+    }
+    return 0;
+  }
 
   const state = {
     lang: detectLang(),
@@ -138,6 +168,16 @@
     renderUpdated(d);
     renderKpis(d);
     for (const id in PANELS) renderPanel(id, d);
+    layoutPanels();
+  }
+
+  // Optional panels are hidden until the API returns their data; when an odd
+  // number of panels is visible, the last one spans the full row.
+  function layoutPanels() {
+    const visible = [...document.querySelectorAll("[data-panel]")].filter((p) => !p.hidden);
+    visible.forEach((p, i) => {
+      p.classList.toggle("span-full", visible.length % 2 === 1 && i === visible.length - 1);
+    });
   }
 
   function renderUpdated(d) {
@@ -174,31 +214,33 @@
     });
 
     const box = panel.querySelector(".bars");
+    panel.hidden = !!(def.optional && (!d || !def[mode](d)));
+    if (panel.hidden) return;
     if (!d) {
       box.innerHTML = '<div class="skeleton"></div>'.repeat(5);
       return;
     }
 
-    const rows = (def[mode](d) || []).slice().sort((a, b) => b.count - a.count);
+    const rows = (def[mode](d) || []).slice().sort(def.sort || ((a, b) => b.count - a.count));
+    const max = Math.max(...rows.map((r) => r.count));
     if (!rows.length) {
       box.innerHTML = '<p class="empty">' + escapeHtml(t("noData")) + "</p>";
       return;
     }
 
     const total = rows.reduce((s, r) => s + r.count, 0);
-    const max = rows[0].count;
     const expanded = !!state.expanded[id];
     const visible = expanded ? rows : rows.slice(0, COLLAPSED_ROWS);
 
     let html = '<ol class="bar-list">';
-    visible.forEach((r, i) => {
+    visible.forEach((r) => {
       const w = max ? Math.max((r.count / max) * 100, 1.5) : 0;
       html +=
         '<li class="bar-row" title="' + escapeHtml(r.name) + ": " + fmtNum(r.count) + " " + escapeHtml(t("devices")) + '">' +
           '<span class="bar-name">' + escapeHtml(r.name) + "</span>" +
           '<span class="bar-count">' + fmtNum(r.count) + "</span>" +
           '<span class="bar-pct">' + fmtPct(r.count, total) + "</span>" +
-          '<span class="bar-track"><span class="bar-fill' + (i === 0 ? " is-top" : "") + '" style="width:' + w + '%"></span></span>' +
+          '<span class="bar-track"><span class="bar-fill' + (r.count === max ? " is-top" : "") + '" style="width:' + w + '%"></span></span>' +
         "</li>";
     });
     html += "</ol>";

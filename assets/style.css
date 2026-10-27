@@ -169,6 +169,8 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
 @media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); } }
 
 .panel { padding: 18px 20px 20px; min-width: 0; }
+.panel[hidden] { display: none; }
+.panel.span-full { grid-column: 1 / -1; }
 .panel-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
 .panel-head h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
 
