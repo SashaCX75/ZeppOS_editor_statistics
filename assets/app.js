@@ -172,9 +172,10 @@
   }
 
   // Optional panels are hidden until the API returns their data; when an odd
-  // number of panels is visible, the last one spans the full row.
+  // number of half-width panels is visible, the last one spans the full row.
+  // Panels marked data-full always span the full row.
   function layoutPanels() {
-    const visible = [...document.querySelectorAll("[data-panel]")].filter((p) => !p.hidden);
+    const visible = [...document.querySelectorAll("[data-panel]:not([data-full])")].filter((p) => !p.hidden);
     visible.forEach((p, i) => {
       p.classList.toggle("span-full", visible.length % 2 === 1 && i === visible.length - 1);
     });
