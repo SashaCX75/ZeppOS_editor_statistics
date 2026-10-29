@@ -11,3 +11,7 @@ Static site for GitHub Pages — no build step. Data is loaded from the Supabase
 Local preview: `python -m http.server 8765`, then open http://localhost:8765/?demo
 
 Deploy: Settings → Pages → Deploy from a branch → `main` / root.
+
+GitHub Pages lets browsers cache files for 10 minutes. When you change a CSS or
+JS file, bump the `?v=` value on its links in `index.html` (all links share one
+value) so returning visitors get the new file together with the new page.
